@@ -1,14 +1,14 @@
 import { Renderer, Ticker, autoDetectRenderer } from 'pixi.js';
 import { getRendererOptions } from './const';
-import { Game } from './game/view/game';
 import { Stage } from './game/view/stage';
+import { Loader } from './loader';
 import { services } from './services';
 
 export class App {
     public ticker!: Ticker;
     public stage!: Stage;
+    public loader!: Loader;
     public renderer!: Renderer;
-    public game!: Game;
 
     constructor() {
         //
@@ -23,6 +23,12 @@ export class App {
 
         this.stage = services.stage = new Stage();
         this.stage.init();
+
+        this.loader = services.loader = new Loader();
+    }
+
+    public async load(): Promise<void> {
+        await this.loader.loadAssets(this.stage.onLoadProgress, this.stage.onLoadComplete);
     }
 
     public async start(): Promise<void> {

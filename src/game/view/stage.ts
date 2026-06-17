@@ -1,7 +1,8 @@
 import { Container } from 'pixi.js';
 import { IRect } from '../../libs/grid/types';
 import { services } from '../../services';
-import { Game } from './game';
+import { GameScene } from './game';
+import { PreloaderScene } from './preloader';
 
 type Orientation = 'landscape' | 'portrait';
 
@@ -10,7 +11,8 @@ export class Stage extends Container {
     private _element: HTMLElement;
     private _bounds: IRect;
 
-    private _game!: Game;
+    private _preloader!: PreloaderScene;
+    private _game!: GameScene;
 
     public constructor() {
         super();
@@ -32,13 +34,26 @@ export class Stage extends Container {
     }
 
     public init(): void {
-        this._game = new Game();
-        this._game.create();
-        this._game.updateTransform({});
+        this._preloader = new PreloaderScene();
+        this._game = new GameScene();
+
         this.addChild(this._game);
+        this.addChild(this._preloader);
+
+        this._preloader.create();
     }
 
+    public readonly onLoadProgress = (progress: number): void => {
+        this._preloader.setLoadProgress(progress);
+    };
+
+    public readonly onLoadComplete = (): void => {
+        this._game.create();
+        this._preloader.destroy();
+    };
+
     private readonly _rebuild = (): void => {
+        this._preloader?.rebuild();
         this._game?.rebuild();
     };
 
