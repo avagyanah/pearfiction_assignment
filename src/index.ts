@@ -1,12 +1,13 @@
-import { Application } from 'pixi.js';
-
-const app = new Application();
+import { App } from './app';
 
 (async () => {
-    await app.init({
-        resizeTo: window,
-            background: '#343434',
-    });
+    const app = new App();
 
-    document.body.appendChild(app.canvas);
+    await app.init();
+    await app.start();
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (globalThis as any).__PIXI_STAGE__ = app.stage;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (globalThis as any).__PIXI_RENDERER__ = app.renderer;
 })();
