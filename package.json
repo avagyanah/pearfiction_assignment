@@ -1,0 +1,40 @@
+{
+  "name": "pear-assingment",
+  "version": "1.0.0",
+  "description": "Assignment for PearFriction",
+  "license": "ISC",
+  "author": "Ashot Avagyan",
+  "scripts": {
+    "start": "webpack serve --config bundler/webpack.dev.ts",
+    "build": "webpack --config bundler/webpack.prod.ts",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "pixi.js": "^8.19.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "@types/webpack-dev-server": "^4.7.2",
+    "@typescript-eslint/eslint-plugin": "^8.61.1",
+    "@typescript-eslint/parser": "^8.61.1",
+    "copy-webpack-plugin": "^14.0.0",
+    "eslint": "^10.5.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "html-webpack-plugin": "^5.6.7",
+    "husky": "^9.1.7",
+    "prettier": "^3.8.4",
+    "ts-loader": "^9.6.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3",
+    "webpack": "^5.107.2",
+    "webpack-cli": "^7.0.3",
+    "webpack-dev-server": "^5.2.5",
+    "webpack-merge": "^6.0.1"
+  },
+  "allowScripts": {
+    "fsevents@2.3.3": true
+  }
+}
