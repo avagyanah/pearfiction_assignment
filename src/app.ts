@@ -1,7 +1,7 @@
 import { EventEmitter } from 'eventemitter3';
 import { Renderer, Ticker, autoDetectRenderer } from 'pixi.js';
 import { getRendererOptions } from './const';
-import { bootstrapCommands } from './game/commands/bootstrapCommand';
+import { bootstrapCommand } from './game/commands/bootstrapCommand';
 import { Stage } from './game/view/stage';
 import { Loader } from './loader';
 import { services } from './services';
@@ -32,7 +32,7 @@ export class App {
 
         this.loader = services.loader = new Loader();
 
-        bootstrapCommands();
+        bootstrapCommand();
     }
 
     public async load(): Promise<void> {

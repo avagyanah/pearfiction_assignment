@@ -1,9 +1,13 @@
 import { services } from '../../services';
-import { initializeModelsCommand } from './initializeModelCommand';
-import { onSpinTapCommands } from './onSpinTapCommand';
+import { SlotMachineModel } from '../model/slotMachineModel';
+import { onSpinTapCommand } from './onSpinTapCommand';
 
-export const bootstrapCommands = (): void => {
-    initializeModelsCommand();
+export const bootstrapCommand = (): void => {
+    // Initialize models
+    services.model = {
+        slotMachine: new SlotMachineModel().initialize(),
+    };
 
-    services.emitter.on('spin_tap', onSpinTapCommands);
+    // Map events to commands which are making changes in models
+    services.emitter.on('spin_tap', onSpinTapCommand);
 };

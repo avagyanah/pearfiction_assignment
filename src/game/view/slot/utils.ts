@@ -1,7 +1,7 @@
 import { Container, RenderTexture, Sprite, Texture, Ticker } from 'pixi.js';
+import { SLOT_CONST } from '../../../const';
 import { services } from '../../../services';
 import { Band } from '../../model/types';
-import { tileHeight, tileWidth } from './constants';
 
 export const wait = (milliseconds: number): Promise<void> => {
     return new Promise(resolve => {
@@ -22,6 +22,8 @@ export const wait = (milliseconds: number): Promise<void> => {
 };
 
 export const getReelTexture = (band: Band): RenderTexture => {
+    const { tileWidth, tileHeight } = SLOT_CONST;
+
     const strip = new Container();
 
     for (let i = 0; i < band.length; i++) {

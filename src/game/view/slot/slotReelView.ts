@@ -1,6 +1,6 @@
 import { Container, TilingSprite } from 'pixi.js';
+import { SLOT_CONST } from '../../../const';
 import { SlotReelModel } from '../../model/slotReelModel';
-import { tileHeight, tileWidth } from './constants';
 import { getReelTexture } from './utils';
 
 export class SlotReelView extends Container {
@@ -15,11 +15,15 @@ export class SlotReelView extends Container {
     }
 
     public setTilePosition(position: number): void {
+        const { tileHeight } = SLOT_CONST;
+
         const tileY = tileHeight * position;
         this._tileSet.tilePosition.y = -tileY;
     }
 
     private _createTiles(): void {
+        const { tileWidth, tileHeight } = SLOT_CONST;
+
         const { band } = this._model;
 
         this._tileSet = new TilingSprite({

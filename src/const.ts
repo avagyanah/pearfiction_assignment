@@ -19,3 +19,11 @@ export const ASSETS: UnresolvedAsset[] = [
     { alias: 'lv4', src: 'assets/lv4_symbol.png' },
     { alias: 'spin_button', src: 'assets/spin_button.png' },
 ];
+
+export const SLOT_CONST = {
+    rows: 3,
+    cols: 5,
+    tileCount: 20,
+    tileWidth: 256,
+    tileHeight: 256,
+};
