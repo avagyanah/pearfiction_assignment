@@ -18,10 +18,10 @@ export class Loader {
 
                 this._onLoadProgress((index + 1) / ASSETS.length);
 
-                await wait(0);
+                await wait(40);
             }
 
-            await wait(0);
+            await wait(200);
             this._onLoadComplete();
         }
     }

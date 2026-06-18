@@ -1,6 +1,6 @@
 import { SLOT_CONST } from '../../const';
 import { services } from '../../services';
-import manifest from './manifest.json';
+import manifest from './slot_manifest.json';
 import { SlotReelModel } from './slotReelModel';
 import { IManifest, IWinResult, TileID, TileMatrix } from './types';
 
@@ -26,6 +26,10 @@ export class SlotMachineModel {
         this._reels = data.reelset.map(band => new SlotReelModel(band, 0));
 
         return this;
+    }
+
+    public setInitialPositions(): void {
+        this.setPositions(this._data.initialPositions);
     }
 
     public setPositions(sequence: number[]): void {

@@ -3,7 +3,7 @@ import { AutoDetectOptions, UnresolvedAsset } from 'pixi.js';
 export const getRendererOptions = (): Partial<AutoDetectOptions> => {
     return {
         canvas: document.getElementById('game_canvas') as HTMLCanvasElement,
-        backgroundColor: '#343434',
+        backgroundColor: '#565656',
         resolution: window.devicePixelRatio ?? 1,
     };
 };

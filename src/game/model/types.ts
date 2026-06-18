@@ -14,6 +14,7 @@ export interface IManifest {
     paytable: Paytable;
     reelset: Band[];
     paylines: number[][][];
+    initialPositions: number[];
 }
 
 export type TileMatrix = TileID[][];
