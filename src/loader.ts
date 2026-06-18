@@ -13,14 +13,16 @@ export class Loader {
             // onComplete?.();
         }
 
-        /* Incorrect way: loading each asset individually, to make progress be seen, with delay between each */
+        /* Incorrect way: loading each asset individually, to make progress be seen, with delay between each asset load */
         {
             for (const [index, asset] of ASSETS.entries()) {
                 await Assets.load(asset);
                 onProgress?.((index + 1) / ASSETS.length);
-                await wait(0.01);
+
+                await wait(0);
             }
 
+            await wait(100);
             onComplete?.();
         }
     }

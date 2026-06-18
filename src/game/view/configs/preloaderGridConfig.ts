@@ -1,8 +1,9 @@
-import { GridCellAlign, GridCellScale, IGridConfig } from '../../../libs/grid/types';
+import { GridCellAlign, GridCellScale, IGridConfig } from '#libs/grid/types';
 import { services } from '../../../services';
 
 export const getPreloaderGridConfig = (): IGridConfig => {
-    const { x, y, width, height } = services.stage.bounds;
+    const { bounds } = services.stage;
+    const { x, y, width, height } = bounds;
 
     return {
         area: { x, y, width, height },

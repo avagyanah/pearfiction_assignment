@@ -1,7 +1,7 @@
+import { Grid } from '#libs/grid';
+import { IGridConfig } from '#libs/grid/types';
 import { Container, Graphics, Text } from 'pixi.js';
-import { Grid } from '../../libs/grid';
-import { IGridConfig } from '../../libs/grid/types';
-import { getPreloaderGridConfig } from './configs/preloaderGridConfig';
+import { getPreloaderGridConfig } from '../configs/preloaderGridConfig';
 
 export class PreloaderScene extends Grid {
     private _view!: Container;

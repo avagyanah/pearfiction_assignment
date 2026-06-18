@@ -23,6 +23,9 @@ export default (): Configuration => ({
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
+        alias: {
+            '#libs': path.resolve('src', 'libs'),
+        },
     },
     output: {
         filename: 'bundle.js',

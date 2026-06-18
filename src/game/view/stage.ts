@@ -1,10 +1,10 @@
+import { IRect } from '#libs/grid/types';
 import { Container } from 'pixi.js';
-import { IRect } from '../../libs/grid/types';
 import { services } from '../../services';
-import { GameScene } from './game';
-import { PreloaderScene } from './preloader';
-
-type Orientation = 'landscape' | 'portrait';
+import { GameScene } from './scenes/gameScene';
+import { PreloaderScene } from './scenes/preloaderScene';
+import { UiScene } from './scenes/uiScene';
+import { Orientation } from './types';
 
 export class Stage extends Container {
     private _orientation: Orientation;
@@ -13,6 +13,7 @@ export class Stage extends Container {
 
     private _preloader!: PreloaderScene;
     private _game!: GameScene;
+    private _ui!: UiScene;
 
     public constructor() {
         super();
@@ -36,8 +37,10 @@ export class Stage extends Container {
     public init(): void {
         this._preloader = new PreloaderScene();
         this._game = new GameScene();
+        this._ui = new UiScene();
 
         this.addChild(this._game);
+        this.addChild(this._ui);
         this.addChild(this._preloader);
 
         this._preloader.create();
@@ -49,12 +52,14 @@ export class Stage extends Container {
 
     public readonly onLoadComplete = (): void => {
         this._game.create();
+        this._ui.create();
         this._preloader.destroy();
     };
 
     private readonly _rebuild = (): void => {
         this._preloader?.rebuild();
         this._game?.rebuild();
+        this._ui?.rebuild();
     };
 
     private readonly _resize = (): void => {
