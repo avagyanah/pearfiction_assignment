@@ -1,4 +1,4 @@
-import { GridCellAlign, GridCellScale, IGridConfig } from '#libs/grid/types';
+import { IGridConfig } from '#libs/grid/types';
 import { services } from '../../../services';
 
 export const getUiGridConfig = (): IGridConfig => {
@@ -10,10 +10,11 @@ export const getUiGridConfig = (): IGridConfig => {
         cells: [
             {
                 name: 'spin_button',
-                bounds: { x: 0.35, y: 0.7, width: 0.3, height: 0.3 },
-                padding: { x: 0.1, y: 0.1, width: 0.8, height: 0.8 },
-                align: GridCellAlign.centerTop,
-                scale: GridCellScale.fit,
+                bounds: { x: 0.3, y: 0.57, width: 0.4, height: 0.2 },
+            },
+            {
+                name: 'win_text',
+                bounds: { x: 0.05, y: 0.77, width: 0.9, height: 0.23 },
             },
         ],
     };
