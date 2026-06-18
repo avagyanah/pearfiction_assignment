@@ -28,7 +28,7 @@ export class WinLine extends Graphics {
         this.stroke({
             width: 40,
             color,
-            alpha: 0.2,
+            alpha: 0.4,
             cap: 'round',
             join: 'round',
         });
