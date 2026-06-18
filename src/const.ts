@@ -27,3 +27,5 @@ export const SLOT_CONST = {
     tileWidth: 256,
     tileHeight: 256,
 };
+
+export const WIN_LINE_COLORS = ['#ff0000', '#00ff00', '#0000ff', '#4584cd'];

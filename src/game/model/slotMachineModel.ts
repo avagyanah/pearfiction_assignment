@@ -17,6 +17,10 @@ export class SlotMachineModel {
         return this._reels;
     }
 
+    public getPayline(paylineId: number): number[][] {
+        return this._data.paylines[paylineId - 1];
+    }
+
     public initialize(data: IManifest = manifest as IManifest): this {
         this._data = data;
         this._reels = data.reelset.map(band => new SlotReelModel(band, 0));

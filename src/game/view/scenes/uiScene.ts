@@ -12,6 +12,7 @@ export class UiScene extends Grid {
 
     public constructor() {
         super(getUiGridConfig());
+
         services.emitter.on('result_update', this._onResult, this);
     }
 

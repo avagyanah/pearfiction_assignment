@@ -1,12 +1,15 @@
 import { Bounds, Container, Graphics } from 'pixi.js';
 import { SLOT_CONST } from '../../../const';
 import { services } from '../../../services';
+import { getWinLineColor } from '../../../utils';
 import { SlotMachineModel } from '../../model/slotMachineModel';
 import { IWinResult } from '../../model/types';
+import { WinLine } from '../components/winLine';
 import { SlotReelView } from './slotReelView';
 
 export class SlotMachineView extends Container {
     private _bg: Graphics = new Graphics();
+    private _winLines: WinLine[] = [];
     private _reels: SlotReelView[] = [];
 
     public constructor(private readonly _model: SlotMachineModel) {
@@ -56,8 +59,15 @@ export class SlotMachineView extends Container {
         });
     }
 
+    private _clearWinLines(): void {
+        this._winLines.forEach(line => this.removeChild(line));
+        this._winLines = [];
+    }
+
     private _setPositions(): void {
         const { reels } = this._model;
+
+        this._clearWinLines();
 
         reels.forEach((reel, index) => {
             this._reels[index].setTilePosition(reel.position);
@@ -65,6 +75,24 @@ export class SlotMachineView extends Container {
     }
 
     private _setResult(result: IWinResult): void {
-        console.warn(result);
+        this._clearWinLines();
+
+        if (result.wins.length === 0) {
+            return;
+        }
+
+        this._drawWins(result.wins);
+    }
+
+    private _drawWins(wins: IWinResult['wins']): void {
+        wins.forEach((win, i) => {
+            const line = new WinLine();
+            const payline = this._model.getPayline(win.paylineId);
+            const color = getWinLineColor(i);
+
+            line.draw(win, payline, color);
+            this.addChildAt(line, 0);
+            this._winLines.push(line);
+        });
     }
 }
