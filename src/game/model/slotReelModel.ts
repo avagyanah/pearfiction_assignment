@@ -17,6 +17,10 @@ export class SlotReelModel {
         this._position = position;
     }
 
+    public getRandomPosition(): number {
+        return Math.floor(Math.random() * this._band.length);
+    }
+
     public get band(): TileID[] {
         return this._band;
     }

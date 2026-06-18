@@ -1,4 +1,5 @@
 import { Bounds, Container, Graphics } from 'pixi.js';
+import { services } from '../../../services';
 import { SlotMachineModel } from '../../model/slotMachineModel';
 import { cols, rows, tileHeight, tileWidth } from './constants';
 import { SlotReelView } from './slotReelView';
@@ -8,10 +9,14 @@ export class SlotMachineView extends Container {
     private _reels: SlotReelView[] = [];
 
     public constructor(private readonly _model: SlotMachineModel) {
-        super();
+        super({
+            label: 'SlotMachine',
+        });
 
         this._createReels();
         this._createBg();
+
+        services.emitter.on('result_update', this._setResult, this);
     }
 
     public getLocalBounds(): Bounds {
@@ -43,6 +48,14 @@ export class SlotMachineView extends Container {
             this.addChild(reelView);
 
             this._reels.push(reelView);
+        });
+    }
+
+    private _setResult(): void {
+        const { reels } = this._model;
+
+        reels.forEach((reel, index) => {
+            this._reels[index].setTilePosition(reel.position);
         });
     }
 }

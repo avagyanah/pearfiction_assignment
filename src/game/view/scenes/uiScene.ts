@@ -11,8 +11,8 @@ export class UiScene extends Grid {
     }
 
     public create() {
-        const button = new SpinButton();
-        this.attach('spin_button', button);
+        this._spinButton = new SpinButton();
+        this.attach('spin_button', this._spinButton);
     }
 
     public getGridConfig(): IGridConfig {

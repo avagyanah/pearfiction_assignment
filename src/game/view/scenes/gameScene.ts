@@ -1,6 +1,6 @@
 import { Grid } from '#libs/grid';
 import { IGridConfig } from '#libs/grid/types';
-import { SlotMachineModel } from '../../model/slotMachineModel';
+import { services } from '../../../services';
 import { getGameGridConfig } from '../configs/gameGridConfig';
 import { SlotMachineView } from '../slot/slotMachineView';
 
@@ -12,7 +12,7 @@ export class GameScene extends Grid {
     }
 
     public create() {
-        this._slotMachine = new SlotMachineView(new SlotMachineModel());
+        this._slotMachine = new SlotMachineView(services.model.slotMachine);
         this.attach('slot_machine', this._slotMachine);
     }
 
