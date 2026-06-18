@@ -9,12 +9,11 @@ export class WinText extends Container {
         super();
 
         this._label = new SplitText({
-            parent: this,
             text: ' ',
             style: {
                 align: 'center',
-                lineHeight: 30,
-                fontSize: 26,
+                lineHeight: 70,
+                fontSize: 60,
                 fill: 'white',
                 tagStyles: {
                     title: { fontWeight: 'bold' },
@@ -25,6 +24,8 @@ export class WinText extends Container {
                 },
             },
         });
+
+        this.addChild(this._label);
     }
 
     public setResult(result: IWinResult): void {

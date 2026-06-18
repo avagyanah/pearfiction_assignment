@@ -14,7 +14,7 @@ export const getUiGridConfig = (): IGridConfig => {
             },
             {
                 name: 'win_text',
-                bounds: { x: 0.05, y: 0.77, width: 0.9, height: 0.23 },
+                bounds: { x: 0.05, y: 0.78, width: 0.9, height: 0.21 },
             },
         ],
     };

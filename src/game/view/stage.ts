@@ -66,14 +66,26 @@ export class Stage extends Container {
     };
 
     private readonly _resize = (): void => {
-        const ratio = window.devicePixelRatio ?? 1;
-        const width = window.innerWidth / ratio;
-        const height = window.innerHeight / ratio;
+        const maxRatio = 0.4;
+
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+
+        const realRatio = Math.min(width / height, height / width);
+        const aspectRatio = Math.max(maxRatio, realRatio);
+
+        if (height > width) {
+            height *= realRatio / aspectRatio;
+        } else {
+            width *= realRatio / aspectRatio;
+        }
 
         this._bounds.width = width;
         this._bounds.height = height;
         this._orientation = width >= height ? 'landscape' : 'portrait';
 
+        this._element.style.left = `${(window.innerWidth - width) / 2}px`;
+        this._element.style.top = `${(window.innerHeight - height) / 2}px`;
         this._element.style.width = `${width}px`;
         this._element.style.height = `${height}px`;
 
