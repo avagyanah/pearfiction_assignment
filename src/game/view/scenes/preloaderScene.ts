@@ -30,10 +30,10 @@ export class PreloaderScene extends Grid {
         this.rebuild();
     }
 
-    public readonly setLoadProgress = (progress: number): void => {
+    public setLoadProgress(progress: number): void {
         this._progressLabel.setProgress(progress);
         this._progressBar.setProgress(progress);
-    };
+    }
 }
 
 class ProgressLabel extends Text {

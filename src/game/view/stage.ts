@@ -24,6 +24,9 @@ export class Stage extends Container {
 
         window.addEventListener('resize', this._resize);
         this._resize();
+
+        services.emitter.on('load_progress', this._onLoadProgress, this);
+        services.emitter.once('load_complete', this._onLoadComplete, this);
     }
 
     public get bounds(): IRect {
@@ -46,15 +49,15 @@ export class Stage extends Container {
         this._preloader.create();
     }
 
-    public readonly onLoadProgress = (progress: number): void => {
+    private _onLoadProgress(progress: number): void {
         this._preloader.setLoadProgress(progress);
-    };
+    }
 
-    public readonly onLoadComplete = (): void => {
+    private _onLoadComplete(): void {
         this._game.create();
         this._ui.create();
         this._preloader.destroy();
-    };
+    }
 
     private readonly _rebuild = (): void => {
         this._preloader?.rebuild();
