@@ -50,7 +50,9 @@ Centering and scaling of individual elements is delegated to `Grid` (`src/libs/g
 
 ## Math Engine
 
-`SlotMachineModel` is responsible for all math. It reads the reelset, paytable, and paylines from `slot_manifest.json` and exposes `calculateResult()` which runs after every spin.
+`MathEngine` (`src/game/model/mathEngine.ts`) is responsible for all math. It takes an `IManifest` in its constructor and exposes a single `calculate(positions): IWinResult` method. It is pure TypeScript with no external dependencies, making it straightforward to unit test.
+
+`SlotMachineModel` instantiates `MathEngine` and delegates the calculation to it. After each spin it calls `engine.calculate()`, stores the result, and emits the `result_update` event for the view to react to.
 
 Paylines are stored as 3×5 binary matrices. On each spin:
 
