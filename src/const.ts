@@ -28,4 +28,4 @@ export const SLOT_CONST = {
     tileHeight: 256,
 };
 
-export const WIN_LINE_COLORS = ['#ffc400', '#00ff00', '#0000ff', '#4584cd'];
+export const WIN_LINE_COLORS = ['#ffc400', '#00ff00', '#0000ff'];

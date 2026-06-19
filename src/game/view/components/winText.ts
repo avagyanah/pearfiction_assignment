@@ -1,22 +1,17 @@
-import { Container, SplitText } from 'pixi.js';
+import { Text } from 'pixi.js';
 import { getWinLineColor } from '../../../utils';
 import { IWinResult } from '../../model/types';
 
-export class WinText extends Container {
-    private _label!: SplitText;
-
+export class WinText extends Text {
     public constructor() {
-        super();
-
-        this._label = new SplitText({
-            text: ' ',
+        super({
             style: {
                 align: 'center',
                 lineHeight: 70,
                 fontSize: 60,
                 fill: 'white',
                 tagStyles: {
-                    title: { fontWeight: 'bold' },
+                    totalWin: { fontWeight: 'bold' },
                     win0: { fill: getWinLineColor(0) },
                     win1: { fill: getWinLineColor(1) },
                     win2: { fill: getWinLineColor(2) },
@@ -24,16 +19,14 @@ export class WinText extends Container {
                 },
             },
         });
-
-        this.addChild(this._label);
     }
 
     public setResult(result: IWinResult): void {
-        let text = '<title>Total wins: 0</title>';
+        let text = '<totalWin>Total wins: 0</totalWin>';
 
         if (result.wins.length > 0) {
             const lines = [
-                `<title>Total wins: ${result.totalWin}</title>`,
+                `<totalWin>Total wins: ${result.totalWin}</totalWin>`,
                 ...result.wins.map(
                     (w, i) =>
                         `<win${i}>- payline ${w.paylineId}, ${w.symbol} x${w.count}, ${w.payout}</win${i}>`
@@ -43,6 +36,6 @@ export class WinText extends Container {
             text = lines.join('\n');
         }
 
-        this._label.text = text;
+        this.text = text;
     }
 }

@@ -17,7 +17,7 @@ export default (): Configuration & { devServer?: DevServerConfiguration } =>
         devServer: {
             static: './dist',
             port: 8080,
-            open: false,
+            open: true,
             client: {
                 logging: 'warn',
             },
