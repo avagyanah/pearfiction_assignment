@@ -21,8 +21,9 @@ export class PreloaderScene extends Grid {
 
     public create() {
         this._progressLabel = new ProgressLabel();
+        this._progressLabel.y -= 20;
         this._progressBar = new ProgressBar();
-        this._progressBar.y += 30;
+        this._progressBar.y += 20;
 
         this._view.addChild(this._progressLabel);
         this._view.addChild(this._progressBar);
@@ -41,7 +42,11 @@ class ProgressLabel extends Text {
         super();
 
         this.anchor.set(0.5);
-        this.style.fill = 0xffffff;
+        this.style = {
+            align: 'center',
+            fill: 0xffffff,
+            fontSize: 40,
+        };
     }
 
     public setProgress(progress: number): void {
