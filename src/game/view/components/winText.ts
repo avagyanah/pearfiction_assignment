@@ -29,21 +29,20 @@ export class WinText extends Container {
     }
 
     public setResult(result: IWinResult): void {
-        this._label.text = ' ';
+        let text = '<title>Total wins: 0</title>';
 
-        if (result.wins.length === 0) {
-            this._label.text = `<title>No Win</title>`;
-            return;
+        if (result.wins.length > 0) {
+            const lines = [
+                `<title>Total wins: ${result.totalWin}</title>`,
+                ...result.wins.map(
+                    (w, i) =>
+                        `<win${i}>- payline ${w.paylineId}, ${w.symbol} x${w.count}, ${w.payout}</win${i}>`
+                ),
+            ];
+
+            text = lines.join('\n');
         }
 
-        const lines = [
-            `<title>Total wins: ${result.totalWin}</title>`,
-            ...result.wins.map(
-                (w, i) =>
-                    `<win${i}>- payline ${w.paylineId}, ${w.symbol} x${w.count}, ${w.payout}</win${i}>`
-            ),
-        ];
-
-        this._label.text = lines.join('\n');
+        this._label.text = text;
     }
 }
