@@ -6,6 +6,12 @@ export class MathEngine {
         //
     }
 
+    /**
+     * Evaluates wins for the given reel positions.
+     * Builds a screen matrix, then for each payline collects the one symbol
+     * per column where the payline matrix is 1, counts consecutive matches
+     * from the left, and records a win if count >= 3.
+     */
     public calculate(positions: number[]): IWinResult {
         const screen: TileMatrix = this._generateScreen(positions);
         const wins: IWinResult['wins'] = [];
@@ -44,6 +50,7 @@ export class MathEngine {
         };
     }
 
+    /** Builds a rows x cols tile matrix based on reel band positions. */
     private _generateScreen(positions: number[]): TileMatrix {
         const { rows } = SLOT_CONST;
 
