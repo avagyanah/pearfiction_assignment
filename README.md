@@ -2,6 +2,8 @@
 
 A browser-based slot machine game built with PixiJS v8 and TypeScript.
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Play%20Now-brightgreen?style=for-the-badge)](https://avagyanah.github.io/pearfiction_assignment/)
+
 ## Features
 
 - Preloader screen with percentage text and a progress bar (bar is beyond requirement)
@@ -63,7 +65,7 @@ Paylines are stored as 3×5 binary matrices. On each spin:
 
 ## Note on Requirement Example
 
-Note: Example 3 (positions `5,14,9,9,16`), the requirement screen for this example contains a typo, col 0, row 2, is shown as `lv1` but based on band 1 at index 7 (position 5 + row 2) is `hv4`. So wins should be calculated based on only payline 6.
+Note: Example 3 (positions `5,14,9,9,16`), the requirement document for this example contains a typo, col 0, row 2, is shown as `lv1` but based on band 1 at index 7 (position 5 + row 2) is `hv4`. So wins should be calculated based on only payline 6.
 
     Band 1: "hv2", "lv3", "lv3", "hv1", "hv1", "lv1", "hv1", "hv4", "lv1", "hv3", "hv2", "hv3", "lv4", "hv4", "lv1", "hv2", "lv4", "lv1", "lv3", "hv2"
 
@@ -71,7 +73,7 @@ Note: Example 3 (positions `5,14,9,9,16`), the requirement screen for this examp
     Screen:                             Screen
         lv1 hv1 lv1 hv1 hv1                 lv1 hv1 lv1 hv1 hv1
         hv1 lv1 hv3 lv1 lv2                 hv1 lv1 hv3 lv1 lv2
-        lv1 lv2 lv1 hv1 hv4      =>         hv4 lv2 lv1 hv1 hv4
+       |lv1| lv2 lv1 hv1 hv4      =>       |hv4| lv2 lv1 hv1 hv4
     Total wins: 10                      Total wins: 5
         - payline 6, lv1 x4, 5              - payline 6, lv1 x4, 5
         - payline 7, lv1 x4, 5
